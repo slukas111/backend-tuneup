@@ -51,19 +51,18 @@ def timeit_helper():
         setup='from __main__ import find_duplicate_movies'
     )
 
-    #runtime = t.repeat(repeat=7, number=3)
     runs_per_repeat = 5
     num_repeat = 7
-    result = t.repeat(repeat=num_repeat, numbers=runs_per_repeat)
+    result = t.repeat(repeat=num_repeat, number=runs_per_repeat)
     print(result)
     result_time = min(result) / float(runs_per_repeat)
     print("Best time across {} repeats of {} per repeat: {} sec".format(num_repeat, runs_per_repeat, result_time))
     # YOUR CODE GOES HERE
-    timeit_helper()
 
 def main():
     """Computes a list of duplicate movie entries"""
     result = find_duplicate_movies('movies.txt')
+    timeit_helper()
     print('Found {} duplicate movies:'.format(len(result)))
     print('\n'.join(result))
 
