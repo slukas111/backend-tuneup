@@ -7,6 +7,7 @@ __author__ = "Sasha Lukas"
 import cProfile
 import pstats
 import functools
+import timeit
 
 
 def profile(func):
@@ -45,8 +46,20 @@ def find_duplicate_movies(src):
 
 def timeit_helper():
     """Part A:  Obtain some profiling measurements using timeit"""
-    # YOUR CODE GOES HERE
+    t = timeit.Timer(
+        stmt="find_duplicate_movies('movies.txt')",
+        setup='from __main__ import find_duplicate_movies'
+    )
 
+    #runtime = t.repeat(repeat=7, number=3)
+    runs_per_repeat = 5
+    num_repeat = 7
+    result = t.repeat(repeat=num_repeat, numbers=runs_per_repeat)
+    print(result)
+    result_time = min(result) / float(runs_per_repeat)
+    print("Best time across {} repeats of {} per repeat: {} sec".format(num_repeat, runs_per_repeat, result_time))
+    # YOUR CODE GOES HERE
+    timeit_helper()
 
 def main():
     """Computes a list of duplicate movie entries"""
