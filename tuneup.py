@@ -8,6 +8,7 @@ import cProfile
 import pstats
 import functools
 import timeit
+from collections import Counter
 
 
 def profile(func):
@@ -46,13 +47,18 @@ def is_duplicate(title, movies):
 @profile
 def find_duplicate_movies(src):
     """Returns a list of duplicate movies from a src list"""
-    movies = read_movies(src)
-    duplicates = []
-    while movies:
-        movie = movies.pop()
-        if is_duplicate(movie, movies):
-            duplicates.append(movie)
-    return duplicates
+    # movies = read_movies(src)
+    # duplicates = []
+    # while movies:
+    #     movie = movies.pop()
+    #     if is_duplicate(movie, movies):
+    #         duplicates.append(movie)
+    # return duplicates
+
+    # duplicates = []
+    # movies = Counter([x.lower() for x in read_movies(src)])
+    duplicate_movies = [item for item, count in Counter([x.lower() for x in read_movies(src)]).items() if count > 1]
+    return duplicate_movies 
 
 
 def timeit_helper():
