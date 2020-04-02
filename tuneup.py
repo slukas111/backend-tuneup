@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """Tuneup assignment"""
 
-__author__ = "Sasha Lukas"
+__author__ = "Sasha Lukas + timeit function demo + sprucing"
 
 import cProfile
 import pstats
@@ -27,10 +27,11 @@ def read_movies(src):
 
 def is_duplicate(title, movies):
     """returns True if title is within movies list"""
-    for movie in movies:
-        if movie.lower() == title.lower():
-            return True
-    return False
+    # for movie in movies:
+    #     if movie.lower() == title.lower():
+    #         return True
+    # return False
+    return title in movies
 
 
 def find_duplicate_movies(src):
